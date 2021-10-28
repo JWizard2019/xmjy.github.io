@@ -1,37 +1,71 @@
-## Welcome to GitHub Pages
+# Website workflow PA
 
-You can use the [editor on GitHub](https://github.com/JWizard2019/xmjy.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Overview
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+任何一个需要和用户交互的网站、应用都是由前后端交互实现的。
 
-### Markdown
+在此PA中，你将制作一个网页，通过前后端交互实现一些特定的功能。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+本次PA为半开放式，要求实现特定的功能，具体实现细节不作要求。
 
-```markdown
-Syntax highlighted code block
+## Design principle
 
-# Header 1
-## Header 2
-### Header 3
+### 后端
 
-- Bulleted
-- List
+- 完整的系统功能包括：增（add）、删（delete）、查（query）、改（modify），你需要通过使用数据库来完成这些操作
+- 采用主流的后端语言（如Python、PHP）及框架（如Django），会让你事半功倍
 
-1. Numbered
-2. List
+### 前端
 
-**Bold** and _Italic_ and `Code` text
+- 为了适配不同移动端的设备尺寸，网页尽可能采用响应式布局
+- 功能设计应友好、易用，符合大众的操作习惯，美观度不作需求
+- 能在前端处理的任务，尽可能放在前端（如：用正则表达式验证邮箱格式）
+- 采用主流的框架（如Vue、React），会让你事半功倍
 
-[Link](url) and ![Image](src)
-```
+## Basic requirement
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### 功能描述：作业系统
 
-### Jekyll Themes
+老师给每个班级的学生统一布置作业，作业类型有必做，可以有选做题，学生在OJ上做作业，老师可以查看学生作业实时完成情况，家长可以查看自己的孩子的作业完成情况。课后老师可以公布对应上次课题目对应的文字题解给学生查阅。一个老师可以对应多个班级。
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/JWizard2019/xmjy.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+想象这是一个OJ的作业辅助系统，作业题号以四位数字形式给出。
 
-### Support or Contact
+#### 实现要求
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- 在系统中，有四类成员：管理员、老师、家长、学生
+- 除管理员外，其余成员必须通过网站前端进行注册
+- 学生提交作业时，可以随机选中一种提交结果，无需实现OJ的后端功能
+- 管理员可以设置用户权限，增删用户
+
+## Advanced requirement
+
+### 验证码
+
+为防止恶意脚本攻击，登录、注册系统需要加上验证码机制，可以是图片验证码，也可以是滑动滑块验证
+
+### 锁
+
+为避免多用户同时访问造成的安全性问题，你的数据库应当采用加锁机制，当大量请求访问数据库时，不对数据库进行读写保护，可能会导致不可弥补的损失。
+
+下面是一个例子：
+
+同样是往银行账户里存钱，假设两个请求同时到达数据库
+
+情况1
+balance的值等于原balance+adj2，导致adj1数据的丢失
+
+<img width="442" alt="image-20211028211740943" src="https://user-images.githubusercontent.com/58677285/139269025-bb4cea22-a7d8-4428-98dc-96961e327e58.png">
+
+情况2
+balance的值等于原balance+adj1，导致adj2数据的丢失
+
+<img width="443" alt="image-20211028211751298" src="https://user-images.githubusercontent.com/58677285/139269154-ee57bc83-9751-4116-a98b-1fa03eb6ea5b.png">
+
+
+### git
+
+多人协作时，用git实现版本控制非常有必要。建议了解git的基本用法，如pull、push等。
+
+### 云服务器
+
+大多数情况下，开发者最终都会在云上部署自己的网站，因此，学习云服务器的知识十分有必要，你可以将做好的网站部署至云端，体会云服务器的工作方式。如有需要，我们可以提供学生用服务器。
