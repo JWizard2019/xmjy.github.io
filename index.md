@@ -1,71 +1,240 @@
-# Website workflow task
+[toc]
 
-## Overview
+# HydroOJ开发者环境部署
 
-任何一个需要和用户交互的网站、应用都是由前后端交互实现的。
+## 安装MongoDB
 
-你将制作一个网页，通过前后端交互实现一些特定的功能。
+```
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+```
 
-半开放式，要求实现特定的功能，具体实现细节不作要求。
+```
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+```
 
-## Design principle
+```
+sudo apt-get update
+```
 
-### 后端
+```
+sudo systemctl start mongod
+```
 
-- 完整的系统功能包括：增（add）、删（delete）、查（query）、改（modify），你需要通过使用数据库来完成这些操作
-- 采用主流的后端语言（如Python、PHP）及框架（如Django），会让你事半功倍
+通过以下命令检验mongod是否启动
 
-### 前端
-
-- 为了适配不同移动端的设备尺寸，网页尽可能采用响应式布局
-- 功能设计应友好、易用，符合大众的操作习惯，美观度不作需求
-- 能在前端处理的任务，尽可能放在前端（如：用正则表达式验证邮箱格式）
-- 采用主流的框架（如Vue、React），会让你事半功倍
-
-## Basic requirement
-
-### 功能描述：作业系统
-
-老师给每个班级的学生统一布置作业，作业类型有必做，可以有选做题，学生在OJ上做作业，老师可以查看学生作业实时完成情况，家长可以查看自己的孩子的作业完成情况。课后老师可以公布对应上次课题目对应的文字题解给学生查阅。一个老师可以对应多个班级。
-
-想象这是一个OJ的作业辅助系统，作业题号以四位数字形式给出。
-
-#### 实现要求
-
-- 在系统中，有四类成员：管理员、老师、家长、学生
-- 除管理员外，其余成员必须通过网站前端进行注册
-- 学生提交作业时，可以随机选中一种提交结果，无需实现OJ的后端功能
-- 管理员可以设置用户权限，增删用户
-
-## Advanced requirement
-
-### 验证码
-
-为防止恶意脚本攻击，登录、注册系统需要加上验证码机制，可以是图片验证码，也可以是滑动滑块验证
-
-### 锁
-
-为避免多用户同时访问造成的安全性问题，你的数据库应当采用加锁机制，当大量请求访问数据库时，不对数据库进行读写保护，可能会导致不可弥补的损失。
-
-下面是一个例子：
-
-同样是往银行账户里存钱，假设两个请求同时到达数据库
-
-情况1
-balance的值等于原balance+adj2，导致adj1数据的丢失
-
-<img width="442" alt="image-20211028211740943" src="https://user-images.githubusercontent.com/58677285/139269025-bb4cea22-a7d8-4428-98dc-96961e327e58.png">
-
-情况2
-balance的值等于原balance+adj1，导致adj2数据的丢失
-
-<img width="443" alt="image-20211028211751298" src="https://user-images.githubusercontent.com/58677285/139269154-ee57bc83-9751-4116-a98b-1fa03eb6ea5b.png">
+```
+sudo systemctl status mongod
+```
 
 
-### git
 
-多人协作时，用git实现版本控制非常有必要。建议了解git的基本用法，如pull、push等。
+![image-20211119023642486](C:\Users\76065\AppData\Roaming\Typora\typora-user-images\image-20211119023642486.png)
 
-### 云服务器
+设置mongod自启动
 
-大多数情况下，开发者最终都会在云上部署自己的网站，因此，学习云服务器的知识十分有必要，你可以将做好的网站部署至云端，体会云服务器的工作方式。如果需要服务器，可以找我。
+```
+sudo systemctl enable mongod
+```
+
+
+
+## 安装MINIO
+
+在浏览器中输入下面的网址，下载minio二进制文件
+
+```
+https://tjc-download.ftn.qq.com/ftn_handler/33df16d09d6c084413db62c87d2f1616c19c58087c736ad823dd5f00a92521f7e7bd2c385e9d1d4e54259fb3cb657f493c277e33b475f8dc6a06b5b1dd1266c5/?fname=minio&k=5f6531373238049badc6671a1438534e045653550a5b02024806000e0115550550011c55575b044c56500403040e515153045004323d610c0c0b58583205&code=ee1728aa&fr=00&&txf_fid=97a89841da8a8d9cb6ed04b046046620cea9a054&xffz=94044160
+```
+
+在包含该二进制文件的文件夹中执行命令：
+
+```
+chmod +x minio
+```
+
+```
+MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=password ./minio server /mnt/data --console-address ":9001"
+```
+
+新建一个终端
+
+
+
+## 安装NODEJS
+
+```
+apt install curl
+```
+
+```bash
+curl -o- https://cdn.jsdelivr.net/gh/nvm-sh/nvm@v0.36.0/install.sh | sed 's/raw.githubusercontent.com\/nvm-sh\/nvm\//cdn.jsdelivr.net\/gh\/nvm-sh\/nvm@/g' | sed 's/github.com\/nvm-sh\/nvm.git/gitee.com\/imirror\/nvm/g' | bash
+export NVM_DIR=/root/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+NVM_NODEJS_ORG_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release nvm install 14
+nvm use 14
+npm i yarn -g
+```
+
+
+
+## 安装Clash代理
+
+[Releases · Dreamacro/clash (github.com)](https://github.com/Dreamacro/clash/releases)
+
+在上面的链接下载linux-amd64版本，解压
+
+```bash
+gunzip clash-linux-amd64-v1.8.0.gz
+```
+
+```bash
+wget -O config.yaml [订阅地址]
+chmod +x clash-linux-amd64-v1.8.0
+./clash-linux-amd64-v1.8.0 -d .
+```
+
+在设置-网络中，点击network proxy右侧的按钮，输入如下参数
+
+![image-20211119035550019](../AppData/Roaming/Typora/typora-user-images/image-20211119035550019.png)
+
+```bash
+apt install git
+```
+
+让git命令也通过代理：
+
+```
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy https://127.0.0.1:7890
+```
+
+
+
+## 安装Hydro
+
+```bash
+git clone https://gitee.com/JWizard/Hydro.git /root/Hydro --recursive # 下载至 /root/Hydro 文件夹
+cd /root/Hydro # 进入工作目录
+```
+
+```
+yarn # 安装依赖包
+yarn build:ui:production # 编译前端
+```
+
+```bash
+npx hydrooj addon add @hydrooj/ui-default
+yarn build:ui
+yarn debug --port=2333
+```
+
+在浏览器打开localhost:2333，进入如下页面，点击confirm
+
+![image-20211119040520295](../AppData/Roaming/Typora/typora-user-images/image-20211119040520295.png)
+
+![image-20211119040618550](../AppData/Roaming/Typora/typora-user-images/image-20211119040618550.png)
+
+ctrl+c退出当前运行，再次输入`yarn debug --port=2333`重启
+
+
+
+## 初始化
+
+![image-20211119040943290](../AppData/Roaming/Typora/typora-user-images/image-20211119040943290.png)
+
+注册一个账号后，查看其UID
+
+![image-20211119041234874](../AppData/Roaming/Typora/typora-user-images/image-20211119041234874.png)
+
+设置其为管理员
+
+```
+sudo su
+cd /root/Hydro/
+npx hydrooj cli user setSuperAdmin 2
+```
+
+登出后，重新登陆，可以看到控制面板
+
+点击控制面板-系统设置
+
+配置如下信息
+
+![image-20211130005830217](../AppData/Roaming/Typora/typora-user-images/image-20211130005830217.png)
+
+
+
+## 重启电脑后hydro如何重启
+
+进入之前的minIO二进制文件所在文件夹
+
+重启minIO
+
+```bash
+MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=password ./minio server /mnt/data --console-address ":9001"
+```
+
+如果遇到如下报错
+
+![image-20211130002957279](../AppData/Roaming/Typora/typora-user-images/image-20211130002957279.png)
+
+或
+
+![image-20211130005030166](../AppData/Roaming/Typora/typora-user-images/image-20211130005030166.png)
+
+需要删除之前的状态文件
+
+```bash
+ls -a /mnt/data
+```
+
+![image-20211130003100081](../AppData/Roaming/Typora/typora-user-images/image-20211130003100081.png)
+
+删除.minio.sys内的所有文件
+
+```bash
+cd /mnt/data
+cd .minio.sys/
+rm -rf *
+```
+
+然后重启minIO，显示如下界面为正常
+
+![image-20211130005106379](../AppData/Roaming/Typora/typora-user-images/image-20211130005106379.png)
+
+如出现端口冲突、drives不正确的情况
+
+登录http://127.0.0.1:9001/dashboard  查看drives数量，以下为正确配置时的情况
+
+![image-20211130005308065](../AppData/Roaming/Typora/typora-user-images/image-20211130005308065.png)
+
+如果发现配置不正确，重启电脑/虚拟机后重新再试
+
+
+
+重新开一个终端窗口
+
+```bash
+sudo su
+cd /root/Hydro
+export NVM_DIR=/root/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+NVM_NODEJS_ORG_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release nvm install 14
+```
+
+```bash
+yarn debug --port=2333
+```
+
+
+
+如果虚拟机在重启后无法上网，把网络设置为automatic
+
+![image-20211130003656196](../AppData/Roaming/Typora/typora-user-images/image-20211130003656196.png)
+
+或者进入clash文件目录下开启clash
+
+```bash
+./clash-linux-amd64-v1.8.0 -d .
+```
+
