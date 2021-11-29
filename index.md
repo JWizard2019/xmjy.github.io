@@ -1,5 +1,3 @@
-[toc]
-
 # HydroOJ开发者环境部署
 
 ## 安装MongoDB
@@ -28,7 +26,7 @@ sudo systemctl status mongod
 
 
 
-![image-20211119023642486](C:\Users\76065\AppData\Roaming\Typora\typora-user-images\image-20211119023642486.png)
+![image-20211119023642486](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211119023642486.png)
 
 设置mongod自启动
 
@@ -95,7 +93,7 @@ chmod +x clash-linux-amd64-v1.8.0
 
 在设置-网络中，点击network proxy右侧的按钮，输入如下参数
 
-![image-20211119035550019](../AppData/Roaming/Typora/typora-user-images/image-20211119035550019.png)
+![image-20211119035550019](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211119035550019.png)
 
 ```bash
 apt install git
@@ -130,9 +128,9 @@ yarn debug --port=2333
 
 在浏览器打开localhost:2333，进入如下页面，点击confirm
 
-![image-20211119040520295](../AppData/Roaming/Typora/typora-user-images/image-20211119040520295.png)
+![image-20211119040520295](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211119040520295.png)
 
-![image-20211119040618550](../AppData/Roaming/Typora/typora-user-images/image-20211119040618550.png)
+![image-20211119040618550](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211119040618550.png)
 
 ctrl+c退出当前运行，再次输入`yarn debug --port=2333`重启
 
@@ -140,11 +138,11 @@ ctrl+c退出当前运行，再次输入`yarn debug --port=2333`重启
 
 ## 初始化
 
-![image-20211119040943290](../AppData/Roaming/Typora/typora-user-images/image-20211119040943290.png)
+![image-20211119040943290](C:/Users/76065/AppData/Roaming/Typora/typora-user-images/image-20211119040943290.png)
 
 注册一个账号后，查看其UID
 
-![image-20211119041234874](../AppData/Roaming/Typora/typora-user-images/image-20211119041234874.png)
+![image-20211119041234874](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211119041234874.png)
 
 设置其为管理员
 
@@ -160,7 +158,7 @@ npx hydrooj cli user setSuperAdmin 2
 
 配置如下信息
 
-![image-20211130005830217](../AppData/Roaming/Typora/typora-user-images/image-20211130005830217.png)
+![image-20211130005830217](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211130005830217.png)
 
 
 
@@ -176,11 +174,11 @@ MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=password ./minio server /mnt/data --co
 
 如果遇到如下报错
 
-![image-20211130002957279](../AppData/Roaming/Typora/typora-user-images/image-20211130002957279.png)
+![image-20211130002957279](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211130002957279.png)
 
 或
 
-![image-20211130005030166](../AppData/Roaming/Typora/typora-user-images/image-20211130005030166.png)
+![image-20211130005030166](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211130005030166.png)
 
 需要删除之前的状态文件
 
@@ -188,7 +186,7 @@ MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=password ./minio server /mnt/data --co
 ls -a /mnt/data
 ```
 
-![image-20211130003100081](../AppData/Roaming/Typora/typora-user-images/image-20211130003100081.png)
+![image-20211130003100081](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211130003100081.png)
 
 删除.minio.sys内的所有文件
 
@@ -200,13 +198,13 @@ rm -rf *
 
 然后重启minIO，显示如下界面为正常
 
-![image-20211130005106379](../AppData/Roaming/Typora/typora-user-images/image-20211130005106379.png)
+![image-20211130005106379](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211130005106379.png)
 
 如出现端口冲突、drives不正确的情况
 
 登录http://127.0.0.1:9001/dashboard  查看drives数量，以下为正确配置时的情况
 
-![image-20211130005308065](../AppData/Roaming/Typora/typora-user-images/image-20211130005308065.png)
+![image-20211130005308065](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211130005308065.png)
 
 如果发现配置不正确，重启电脑/虚拟机后重新再试
 
@@ -230,7 +228,7 @@ yarn debug --port=2333
 
 如果虚拟机在重启后无法上网，把网络设置为automatic
 
-![image-20211130003656196](../AppData/Roaming/Typora/typora-user-images/image-20211130003656196.png)
+![image-20211130003656196](https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211130003656196.png)
 
 或者进入clash文件目录下开启clash
 
