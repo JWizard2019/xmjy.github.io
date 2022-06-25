@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hydro一键部署转开发者模式 | Dev for Hydro_xmjy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[toc] 一键部署您需要按照官方教程https:&#x2F;&#x2F;hydro.js.org 一键部署并初始化 如果一键部署发现一些archive无法下载的情况，报错中说明是无法通过某些网站下载的，按照下文配置代理，然后让http经过代理转发（如果同时设置了https可能会造成失败） 1export http_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890    停止原hydrooj服务1pm2 sto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hydro一键部署转开发者模式">
+<meta property="og:url" content="https://jwizard2019.github.io/xmjy.github.io/2021/11/30/Hydro%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E8%BD%AC%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Dev for Hydro_xmjy">
+<meta property="og:description" content="[toc] 一键部署您需要按照官方教程https:&#x2F;&#x2F;hydro.js.org 一键部署并初始化 如果一键部署发现一些archive无法下载的情况，报错中说明是无法通过某些网站下载的，按照下文配置代理，然后让http经过代理转发（如果同时设置了https可能会造成失败） 1export http_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890    停止原hydrooj服务1pm2 sto">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211119035550019.png">
+<meta property="article:published_time" content="2021-11-30T05:19:52.000Z">
+<meta property="article:modified_time" content="2022-06-25T14:50:03.133Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211119035550019.png">
+  
+    <link rel="alternate" href="/xmjy.github.io/atom.xml" title="Dev for Hydro_xmjy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  
+<link rel="stylesheet" href="/xmjy.github.io/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/xmjy.github.io/" id="main-nav-title" class="main-nav-link">Dev for Hydro_xmjy</a>
+        
+          <a class="main-nav-link" href="/xmjy.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/xmjy.github.io/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/xmjy.github.io/about/">about</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Hydro一键部署转开发者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xmjy.github.io/categories/Hydrooj/">Hydrooj</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hydro一键部署转开发者模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[toc]</p>
+<h2 id="一键部署"><a href="#一键部署" class="headerlink" title="一键部署"></a>一键部署</h2><p>您需要按照官方教程<a target="_blank" rel="noopener" href="https://hydro.js.org/">https://hydro.js.org</a></p>
+<p>一键部署并初始化</p>
+<p>如果一键部署发现一些archive无法下载的情况，报错中说明是无法通过某些网站下载的，按照下文配置代理，然后让http经过代理转发（如果同时设置了https可能会造成失败）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="停止原hydrooj服务"><a href="#停止原hydrooj服务" class="headerlink" title="停止原hydrooj服务"></a>停止原hydrooj服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 stop hydrooj</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装Clash代理（为后续安装依赖做准备）"><a href="#安装Clash代理（为后续安装依赖做准备）" class="headerlink" title="安装Clash代理（为后续安装依赖做准备）"></a>安装Clash代理（为后续安装依赖做准备）</h2><h3 id="方法1：在Ubuntu虚拟机内直接安装代理"><a href="#方法1：在Ubuntu虚拟机内直接安装代理" class="headerlink" title="方法1：在Ubuntu虚拟机内直接安装代理"></a>方法1：在Ubuntu虚拟机内直接安装代理</h3><p><a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">Releases · Dreamacro/clash (github.com)</a></p>
+<p>在上面的链接下载linux-amd64版本，解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip clash-linux-amd64-v1.8.0.gz</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget -O config.yaml [订阅地址]</span><br><span class="line">chmod +x clash-linux-amd64-v1.8.0</span><br><span class="line">./clash-linux-amd64-v1.8.0 -d .</span><br></pre></td></tr></table></figure>
+
+<p>在设置-网络中，点击network proxy右侧的按钮，输入如下参数</p>
+<p><img src="https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211119035550019.png" alt="image-20211119035550019"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install git</span><br></pre></td></tr></table></figure>
+
+<p>让git命令也通过代理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy https://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法2：通过主机代理（略）"><a href="#方法2：通过主机代理（略）" class="headerlink" title="方法2：通过主机代理（略）"></a>方法2：通过主机代理（略）</h3><p>网上搜索</p>
+<h2 id="安装Hydro"><a href="#安装Hydro" class="headerlink" title="安装Hydro"></a>安装Hydro</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/JWizard2019/Hydro_xmjy.git /root/Hydro --recursive <span class="comment"># 下载至 /root/Hydro 文件夹</span></span><br><span class="line"><span class="built_in">cd</span> /root/Hydro <span class="comment"># 进入工作目录</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn # 安装依赖包</span><br><span class="line">yarn build:ui:production # 编译前端</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx hydrooj addon add @hydrooj/ui-default</span><br><span class="line">yarn build:ui</span><br><span class="line">yarn debug --port=2333 <span class="comment">#在端口2333打开，如果遇到冲突，请换一个可用端口</span></span><br></pre></td></tr></table></figure>
+
+<p>在浏览器打开localhost:2333</p>
+<h2 id="重启电脑后hydro如何重启"><a href="#重启电脑后hydro如何重启" class="headerlink" title="重启电脑后hydro如何重启"></a>重启电脑后hydro如何重启</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">pm2 stop hydrooj</span><br><span class="line">yarn debug --port=2333</span><br></pre></td></tr></table></figure>
+
+<p>需要先关掉原hydrooj，不建议同时使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jwizard2019.github.io/xmjy.github.io/2021/11/30/Hydro%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E8%BD%AC%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F/" data-id="cl4u0f8p90001d0wt5ujg1uy9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xmjy.github.io/tags/C%E7%AB%AF/" rel="tag">C端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/xmjy.github.io/2021/12/07/PM2-5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Newer</span>
+      <div class="article-nav-title">
+        
+          pm2管理进程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/xmjy.github.io/2021/11/30/hydro%E5%BC%80%E5%8F%91%E8%80%85%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Older</span>
+      <div class="article-nav-title">Hydro开发者环境部署指南</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/xmjy.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/xmjy.github.io/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/xmjy.github.io/about/" class="mobile-nav-link">about</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/xmjy.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/xmjy.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/xmjy.github.io/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

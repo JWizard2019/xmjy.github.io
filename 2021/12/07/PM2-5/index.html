@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>pm2管理进程 | Dev for Hydro_xmjy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="利用pm2 管理程序（以hydrooj为例）1vim package.json  找到启动该程序的命令  比如：用普通模式长期运行hydro 1pm2 start node_modules&#x2F;.bin&#x2F;hydrooj --name hydrooj_dev  执行上述命令，用pm2启动程序，并将该程序命名为hydrooj_dev 这样以后通过pm2 start hydrooj_dev等命令即可启动该程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pm2管理进程">
+<meta property="og:url" content="https://jwizard2019.github.io/xmjy.github.io/2021/12/07/PM2-5/index.html">
+<meta property="og:site_name" content="Dev for Hydro_xmjy">
+<meta property="og:description" content="利用pm2 管理程序（以hydrooj为例）1vim package.json  找到启动该程序的命令  比如：用普通模式长期运行hydro 1pm2 start node_modules&#x2F;.bin&#x2F;hydrooj --name hydrooj_dev  执行上述命令，用pm2启动程序，并将该程序命名为hydrooj_dev 这样以后通过pm2 start hydrooj_dev等命令即可启动该程">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211207001853565.png">
+<meta property="article:published_time" content="2021-12-06T16:04:27.000Z">
+<meta property="article:modified_time" content="2022-06-25T14:47:20.431Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211207001853565.png">
+  
+    <link rel="alternate" href="/xmjy.github.io/atom.xml" title="Dev for Hydro_xmjy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  
+<link rel="stylesheet" href="/xmjy.github.io/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/xmjy.github.io/" id="main-nav-title" class="main-nav-link">Dev for Hydro_xmjy</a>
+        
+          <a class="main-nav-link" href="/xmjy.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/xmjy.github.io/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/xmjy.github.io/about/">about</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PM2-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pm2管理进程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="利用pm2-管理程序（以hydrooj为例）"><a href="#利用pm2-管理程序（以hydrooj为例）" class="headerlink" title="利用pm2 管理程序（以hydrooj为例）"></a>利用pm2 管理程序（以hydrooj为例）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim package.json</span><br></pre></td></tr></table></figure>
+
+<p>找到启动该程序的命令</p>
+<p><img src="https://raw.githubusercontent.com/JWizard2019/picture/main/image-20211207001853565.png" alt="image-20211207001853565"></p>
+<p>比如：用普通模式长期运行hydro</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start node_modules/.bin/hydrooj --name hydrooj_dev</span><br></pre></td></tr></table></figure>
+
+<p>执行上述命令，用pm2启动程序，并将该程序命名为hydrooj_dev</p>
+<p>这样以后通过<code>pm2 start hydrooj_dev</code>等命令即可启动该程序</p>
+<p>如果要用debug模式，就把package.json中的命令替换掉上面的start后面的路径</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jwizard2019.github.io/xmjy.github.io/2021/12/07/PM2-5/" data-id="cl4u0f8pd0002d0wt1cxx7qtd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/xmjy.github.io/2022/06/25/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Newer</span>
+      <div class="article-nav-title">
+        
+          hexo常用命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/xmjy.github.io/2021/11/30/Hydro%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E8%BD%AC%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Older</span>
+      <div class="article-nav-title">Hydro一键部署转开发者模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/xmjy.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/xmjy.github.io/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/xmjy.github.io/about/" class="mobile-nav-link">about</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/xmjy.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/xmjy.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/xmjy.github.io/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
